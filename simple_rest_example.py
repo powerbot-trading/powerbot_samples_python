@@ -2,8 +2,10 @@ import configparser
 import json
 import random
 
-from swagger_client import Configuration, ApiClient, OrdersApi, ContractApi, OrderEntry
+from swagger_client import Configuration, ApiClient, OrdersApi, ContractApi, OrderEntry, MarketApi
 from swagger_client.rest import ApiException
+
+# todo add swagger_client, install required packages and configure the file conf.ini with your api-key and portfolio
 
 # relative path to the config file; this file should contain all
 CONF_FILE_PATH = "configuration/conf.ini"
@@ -46,10 +48,18 @@ if __name__ == '__main__':
         client = ApiClient(config)
 
         # in this example, we need the Contract-API to retrieve the currently active contracts and
-        # the Orders-API to place an order (both defined in the swagger_client)
-        #
+        # the Orders-API to place an order and
+        # the Market-API to for checking the market status(all defined in the swagger_client)
         contract_api = ContractApi(client)
         order_api = OrdersApi(client)
+        market_api = MarketApi(client)
+
+        # we get the current market status and check if the market status is OK, otherwise we raise an exception and
+        # the script stops
+        market_status = market_api.get_status()
+
+        if market_status.status != "OK":
+            raise ApiException(status=f"Execution stopped: Market status is {market_status.status}")
 
         # get the currently active contracts from the Contract-API
         order_book = contract_api.get_order_books(delivery_area=delivery_area, portfolio_id=portfolio_id)
@@ -82,4 +92,4 @@ if __name__ == '__main__':
         print("------------ORDER ADDED------------")
         print(response)
     except ApiException as ex:
-        pass
+        print(ex)

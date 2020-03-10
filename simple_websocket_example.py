@@ -3,7 +3,7 @@ from queue import Queue
 
 from helpers.websocket_helper import PowerBotWebSocket
 
-# todo add swagger_client and install required packages
+# todo add swagger_client, install required packages and configure the file conf.ini with your api-key and portfolio
 
 # relative path to the config file; this file should contain all
 CONF_FILE_PATH = "configuration/conf.ini"
