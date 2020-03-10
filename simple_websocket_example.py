@@ -17,7 +17,8 @@ CONF_FILE_PATH = "configuration/conf.ini"
 # created from the swagger-editor, selecting "Generate Client"->"python"
 # the created zip-file contains the folder "swagger_client"
 
-# to run this example, please specify your exchange-url/api-key and a coresponding portfolio-id/delivery-area for this api-key
+# to run this example, please specify your exchange-url/api-key and
+# a coresponding portfolio-id/delivery-area for this api-key
 # at the "conf.ini"-file
 # for this api-key, the values "can_read" and "can_trade" must be "true",
 # as this example will read the current contracts and post a new order
