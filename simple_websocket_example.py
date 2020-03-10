@@ -2,7 +2,12 @@ import configparser
 from queue import Queue
 
 from helpers.websocket_helper import PowerBotWebSocket
-
+"""
+This example does the following by using webservice-events provided by PowerBot:
+1) Specify to which events you want to subscribe
+2) Initialize a queue and start listening for events
+3) React to events
+"""
 # todo add swagger_client, install required packages and configure the file conf.ini with your api-key and portfolio
 
 # relative path to the config file; this file should contain all
