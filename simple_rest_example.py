@@ -2,8 +2,18 @@ import configparser
 import json
 import random
 
-from swagger_client import Configuration, ApiClient, OrdersApi, ContractApi, OrderEntry, MarketApi
+from swagger_client import Configuration, ApiClient, OrdersApi, ContractApi, OrderEntry, MarketApi, BulkSignal, \
+    SignalsApi
 from swagger_client.rest import ApiException
+
+"""
+This example does the following by using REST-Methods provided by PowerBot:
+1) Check if the market status is ok
+2) Get the current order-book
+3) Select a random contract from the order-book
+4) Post signal-information for the selected contract
+5) Post an order for the selected contract
+"""
 
 # todo add swagger_client, install required packages and configure the file conf.ini with your api-key and portfolio
 
@@ -14,10 +24,9 @@ CONF_FILE_PATH = "configuration/conf.ini"
 # created from the swagger-editor, selecting "Generate Client"->"python"
 # the created zip-file contains the folder "swagger_client"
 
-# to run this example, please specify your exchange-url/api-key and a coresponding portfolio-id/delivery-area for this api-key
-# at the "conf.ini"-file
-# for this api-key, the values "can_read" and "can_trade" must be "true",
-# as this example will read the current contracts and post a new order
+# to run this example, please specify your exchange-url/api-key and
+# a coresponding portfolio-id/delivery-area for this api-key at the "conf.ini"-file
+# for this api-key, the values "can_read" and "can_trade" must be "true"
 if __name__ == '__main__':
 
     # set up the configparser to read from the specified configuration file
@@ -49,9 +58,11 @@ if __name__ == '__main__':
 
         # in this example, we need the Contract-API to retrieve the currently active contracts and
         # the Orders-API to place an order and
+        # the Signals-Api to post signals and
         # the Market-API to for checking the market status(all defined in the swagger_client)
         contract_api = ContractApi(client)
         order_api = OrdersApi(client)
+        signal_api = SignalsApi(client)
         market_api = MarketApi(client)
 
         # we get the current market status and check if the market status is OK, otherwise we raise an exception and
@@ -66,6 +77,29 @@ if __name__ == '__main__':
 
         # we select a random contract for which we want to place a new order
         selected_contract = random.choice(order_book.contracts)
+
+        # define a new signal which we want to post for the selected contract
+        # please node that signals are posted for a particular delivery_start and delivery_and time
+        # you cannot specify a particular contract_id
+        signal = BulkSignal(
+            source="TestSource",
+            portfolio_ids=[portfolio_id],
+            delivery_areas=[delivery_area],
+            delivery_start=selected_contract.delivery_start,
+            delivery_end=selected_contract.delivery_end,
+            value={
+                "position_long": 10,
+                "position_short": 10
+            }
+        )
+
+        # we post the created signal to the contract and retrieve the response
+        # the field "status" in the response indicates if everything was posted correctly
+        signal_response = signal_api.update_signals([signal])
+
+        # summary of the posted order is printed to the console
+        print("------------SIGNAL ADDED------------")
+        print(signal_response)
 
         # define the new order which we want to place for the selected contract
         # the order-entry-object is defined in the swagger_client
@@ -86,10 +120,13 @@ if __name__ == '__main__':
 
         # we post the created order to the market and retrieve the response
         # the field "action" in the response specifies what happend to the posted order
-        response = order_api.add_order(order)
+        order_response = order_api.add_order(order)
 
         # summary of the posted order is printed to the console
         print("------------ORDER ADDED------------")
-        print(response)
+        print(order_response)
+
+    # if there is any problem with a request or if the market status is not ok, the swagger-client will throw an
+    # Api-Exception which can be handled here
     except ApiException as ex:
         print(ex)
