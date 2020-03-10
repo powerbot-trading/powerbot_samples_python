@@ -25,7 +25,7 @@ CONF_FILE_PATH = "configuration/conf.ini"
 # the created zip-file contains the folder "swagger_client"
 
 # to run this example, please specify your exchange-url/api-key and
-# a coresponding portfolio-id/delivery-area for this api-key at the "conf.ini"-file
+# a corresponding portfolio-id/delivery-area for this api-key at the "conf.ini"-file
 # for this api-key, the values "can_read" and "can_trade" must be "true"
 if __name__ == '__main__':
 
@@ -79,7 +79,7 @@ if __name__ == '__main__':
         selected_contract = random.choice(order_book.contracts)
 
         # define a new signal which we want to post for the selected contract
-        # please node that signals are posted for a particular delivery_start and delivery_and time
+        # please note that signals are posted for a particular delivery_start and delivery_and time
         # you cannot specify a particular contract_id
         signal = BulkSignal(
             source="TestSource",
