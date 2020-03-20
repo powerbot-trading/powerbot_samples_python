@@ -1,0 +1,13 @@
+{
+    "CLIENT_DATA":
+    {
+        "HOST": "",
+        "API_KEY": ""
+    },
+
+    "CONTRACT_DATA":
+    {
+        "DELIVERY_AREA": "",
+        "PORTFOLIO": ""
+    }
+}

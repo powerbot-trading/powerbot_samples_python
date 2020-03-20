@@ -1,7 +1,7 @@
 import configparser
 import json
 import random
-
+from pathlib import Path
 from swagger_client import Configuration, ApiClient, OrdersApi, ContractApi, OrderEntry, MarketApi, BulkSignal, \
     SignalsApi
 from swagger_client.rest import ApiException
@@ -15,34 +15,34 @@ This example does the following by using REST-Methods provided by PowerBot:
 5) Post an order for the selected contract
 """
 
-# todo add swagger_client, install required packages and configure the file conf.ini with your api-key and portfolio
+# todo add swagger_client, install required packages and configure the file config.json with your api-key and portfolio
 
 # relative path to the config file; this file should contain all
-CONF_FILE_PATH = "configuration/conf.ini"
+curr_path = str(Path.cwd()).split("\\")
+config_path = ("\\").join(curr_path[:curr_path.index('powerbot-samples') + 1]) + "/configuration/config.json"
 
-# the folder "swagger_client", which contains all the functionality for interacting with powerbot via rest, can be
+# the folder "swagger_client", which contains all the functionality for interacting with PowerBot via rest, can be
 # created from the swagger-editor, selecting "Generate Client"->"python"
 # the created zip-file contains the folder "swagger_client"
 
 # to run this example, please specify your exchange-url/api-key and
-# a corresponding portfolio-id/delivery-area for this api-key at the "conf.ini"-file
+# a corresponding portfolio-id/delivery-area for this api-key at the "config.json"-file
 # for this api-key, the values "can_read" and "can_trade" must be "true"
 if __name__ == '__main__':
 
     # set up the configparser to read from the specified configuration file
-    # this configuration file contains all necessary information for interacting with powerbot
-    conf_file = configparser.ConfigParser(allow_no_value=True)
-    conf_file.read(CONF_FILE_PATH)
+    # this configuration file contains all necessary information for interacting with PowerBot
+    with open(config_path, "r") as configfile:
+        config = json.load(configfile)
 
     # the configuration is read from the configuration file and the values are stored in local variables
     # the exchange_url and the api_key are needed for configuring the APIs
-
-    # the portfolio_id and the delivery are are needed for retriving the currently active contracts and
+    # the portfolio_id and the delivery are are needed for retrieving the currently active contracts and
     # for placing an order
-    exchange_url = conf_file["Exchange_Detail"]["exchange_url"]
-    api_key = conf_file["Exchange_Detail"]["api_key"]
-    portfolio_id = conf_file["Exchange_Detail"]["portfolio_id"]
-    delivery_area = conf_file["Exchange_Detail"]["delivery_area"]
+    host_url = config["CLIENT_DATA"]["HOST"]
+    api_key = config["CLIENT_DATA"]["API_KEY"]
+    portfolio_id = config["CONTRACT_DATA"]["PORTFOLIO"]
+    delivery_area = config["CONTRACT_DATA"]["DELIVERY_AREA"]
 
     # we surround all the code which interacts
     try:
@@ -50,7 +50,7 @@ if __name__ == '__main__':
         # the exchange_url and api_key are passed to this configuration object
         config = Configuration()
         config.api_key["api_key"] = api_key
-        config.host = exchange_url
+        config.host = host_url
 
         # we need this configuration object to set up the API-Client (defined in the swagger_client)
         # this API-Client can be passed to whatever API is needed
@@ -79,7 +79,7 @@ if __name__ == '__main__':
         selected_contract = random.choice(order_book.contracts)
 
         # define a new signal which we want to post for the selected contract
-        # please note that signals are posted for a particular delivery_start and delivery_and time
+        # please note that signals are posted for a particular delivery_start and delivery_end time
         # you cannot specify a particular contract_id
         signal = BulkSignal(
             source="TestSource",
@@ -119,7 +119,7 @@ if __name__ == '__main__':
         )
 
         # we post the created order to the market and retrieve the response
-        # the field "action" in the response specifies what happend to the posted order
+        # the field "action" in the response specifies what happened to the posted order
         order_response = order_api.add_order(order)
 
         # summary of the posted order is printed to the console

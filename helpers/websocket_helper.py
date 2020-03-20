@@ -13,7 +13,7 @@ class PowerBotWebSocket():
         self.__logger = logging.getLogger("PowerBotWebSocketClass")
         self.__logger.setLevel(logging.INFO)
         self.__active = False
-        self.__wss = base_url + "?api_key=" + api_key
+        self.__wss = base_url.replace('https', 'wss').replace('api', 'subscription') + f'?api_key={api_key}'
         self.__subscriptions = subscriptions
         self.__receipt = uuid.uuid4()
 
