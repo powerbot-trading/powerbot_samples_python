@@ -5,13 +5,13 @@
 ***Hint:*** *set your configuration in the config.json!*
 ***
 ####Content:
-1. Introduction & Setup
-2. Simple Example of a REST call
-3. Simple Example of an Algorithm
-4. Simple Example of a Websocket
-5. Advanced Example of an Algorithm
+1. [Introduction & Setup](#introduction--setup)
+2. [Simple Example of a REST call](#simple-example-of-a-rest-call)
+3. [Simple Example of a websocket](#simple-example-of-a-websocket)
+4. [Simple Example of an Algorithm](#simple-example-of-an-algorithm)
+5. [Advanced Example of an Algorithm](#advanced-example-of-an-algorithm)
 ***
-####1. Introduction & Setup
+### Introduction & Setup
 The example scripts expect the libraries necessary for the client (listed in requirements.txt) to be installed in the environment you run it in.
 To install the requirements in a virtual environment, simply use the provided pipfile to create a new pipenv.
 
@@ -36,7 +36,7 @@ Required data:
 	DELIVERY_AREA
 	PORTFOLIO_ID
 ***
-####2. Simple Example of a REST call
+### Simple Example of a REST call
 This sample does the following:
 First it reads the necessary information from the config-file. These config-file needs to contain the powerbot-url, a 
 valid api-key and a corresponding portfolio-id/delivery-area.
@@ -49,13 +49,13 @@ proceed. Otherwise the script will stop.
 If the market status is "OK", the script reads the order-book, which contains all active contracts. A random contract is
 selected, a signal is posted and and order is placed.  
 ***
-####3. Simple Example of an Algorithm
+### Simple Example of an Algorithm
 This example algorithm will try close the open position for the next 6 upcoming hourly contracts.
 For this purpose the current order book is fetched. The algorithm then iterates over every contract,
 extracts the relevant signal information (which is updated ever 5 minutes) from it and places new orders
 accordingly.
 ***
-####4. Simple Example of a Websocket
+### Simple Example of a Websocket
 This example focuses on establishing a websocket-connection and continuously waits for new events. 
 First it reads the necessary information from the config-file. The config-file needs to contain the 
 powerbot-websocket-url, a valid api-key and a corresponding portfolio-id.
@@ -63,7 +63,7 @@ powerbot-websocket-url, a valid api-key and a corresponding portfolio-id.
 The example subscribes to the "orderbookchangedevent", so every time something is changing in the order book, the 
 change gets added to a queue and the script can react to this change.
 ***
-####5. Advanced Example of an Algorithm
+### Advanced Example of an Algorithm
 This example algorithm will try to close the open position for the quarter hour contracts of the next
 three upcoming hours. The algorithm won't place orders for the entire imbalance immediately, but rather
 increase the quantity of each order over time. It first will try to place orders as originator, however,
