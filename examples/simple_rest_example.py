@@ -5,6 +5,8 @@ from pathlib import Path
 from swagger_client import Configuration, ApiClient, OrdersApi, ContractApi, OrderEntry, MarketApi, BulkSignal, \
     SignalsApi
 from swagger_client.rest import ApiException
+# Load Config File
+from configuration import config
 
 """
 This example does the following by using REST-Methods provided by PowerBot:

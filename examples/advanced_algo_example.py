@@ -17,6 +17,9 @@ from dateutil import tz
 from swagger_client import Configuration, ApiClient, rest
 from swagger_client.api import MarketApi, ContractApi, OrdersApi, SignalsApi, LogsApi
 from swagger_client.models import OrderModify, OrderEntry
+# Load Config File
+from configuration import config
+
 
 # Logging setup
 logging.basicConfig(level=logging.INFO)
@@ -256,12 +259,6 @@ def algorithm():
 
 
 if __name__ == "__main__":
-
-    # Demo script accepts api_key and base_url as variables in the config.json.
-    curr_path = str(Path.cwd()).split("\\")
-    config_path = ("\\").join(curr_path[:curr_path.index('powerbot-samples') + 1]) + "/configuration/config.json"
-    with open(config_path, "r") as configfile:
-        config = json.load(configfile)
 
     # Get parameters from config file
     API_KEY = config['CLIENT_DATA']['API_KEY']

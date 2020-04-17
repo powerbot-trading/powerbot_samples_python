@@ -2,6 +2,10 @@ from queue import Queue
 from pathlib import Path
 import json
 from helpers.websocket_helper import PowerBotWebSocket
+# Load Config File
+from configuration import config
+
+
 """
 This example does the following by using webservice-events provided by PowerBot:
 1) Specify to which events you want to subscribe
@@ -23,11 +27,6 @@ config_path = ("\\").join(curr_path[:curr_path.index('powerbot-samples') + 1]) +
 # for this api-key, the values "can_read" and "can_trade" must be "true",
 # as this example will read the current contracts and post a new order
 if __name__ == '__main__':
-
-    # read from the specified configuration file
-    # this configuration file contains all necessary information for interacting with PowerBot
-    with open(config_path, "r") as configfile:
-        config = json.load(configfile)
 
     # the configuration is read from the configuration file and the values are stored in local variables
     host_url = config["CLIENT_DATA"]["HOST"]

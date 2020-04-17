@@ -20,6 +20,8 @@ from swagger_client import Configuration, ApiClient, SignalsApi
 from swagger_client.api import MarketApi,  OrdersApi, LogsApi, ContractApi
 from swagger_client.models import OrderEntry
 from helpers.simple_algo_helper import get_previous_values, get_signal_value, get_position_info, delete_orders, create_signals
+# Load Config File
+from configuration import config
 
 # Setting up logging for commandline output
 logging.basicConfig(level=logging.INFO)
@@ -167,12 +169,6 @@ def signals():
 
 
 if __name__ == '__main__':
-    # Note that api keys should not be hard coded into the algorithm for security reasons.
-    # This is only acceptable for showcase purposes.
-    curr_path = str(Path.cwd()).split("\\")
-    config_path = ("\\").join(curr_path[:curr_path.index('powerbot-samples') + 1]) + "/configuration/config.json"
-    with open(config_path, "r") as configfile:
-        config = json.load(configfile)
 
     # Get parameters from config file
     API_KEY = config['CLIENT_DATA']['API_KEY']
