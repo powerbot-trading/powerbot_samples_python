@@ -4,7 +4,7 @@
 
 ***Hint:*** *set your configuration in the config.json!*
 ***
-####Content:
+### Content:
 1. [Introduction & Setup](#introduction--setup)
 2. [Simple Example of a REST call](#simple-example-of-a-rest-call)
 3. [Simple Example of a websocket](#simple-example-of-a-websocket)
