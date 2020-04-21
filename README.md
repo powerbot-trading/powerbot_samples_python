@@ -24,7 +24,7 @@ Additionally, the swagger_client library is required to be in the directory.
 The client can be generated from https://staging.powerbot-trading.com/playground/epex/v2/admin/editor?url=../swagger-spec
 by clicking on "Generate Client" and picking Python. The required folder is called "swagger_client".
 
-If the client becomes defunct due to api changes, regenerate it in the swagger editor
+If the client becomes defunct due to API changes, regenerate it in the swagger editor
 and replace "swagger_client" folder from the downloaded archive.
 
 To run the run algorithm, the API specifications you should have received have to be provided in the config.json in the configuration directory.
@@ -49,12 +49,6 @@ proceed. Otherwise the script will stop.
 If the market status is "OK", the script reads the order-book, which contains all active contracts. A random contract is
 selected, a signal is posted and and order is placed.  
 ***
-### Simple Example of an Algorithm
-This example algorithm will try close the open position for the next 6 upcoming hourly contracts.
-For this purpose the current order book is fetched. The algorithm then iterates over every contract,
-extracts the relevant signal information (which is updated ever 5 minutes) from it and places new orders
-accordingly.
-***
 ### Simple Example of a Websocket
 This example focuses on establishing a websocket-connection and continuously waits for new events. 
 First it reads the necessary information from the config-file. The config-file needs to contain the 
@@ -62,6 +56,12 @@ powerbot-websocket-url, a valid api-key and a corresponding portfolio-id.
 
 The example subscribes to the "orderbookchangedevent", so every time something is changing in the order book, the 
 change gets added to a queue and the script can react to this change.
+***
+### Simple Example of an Algorithm
+This example algorithm will try close the open position for the next 6 upcoming hourly contracts.
+For this purpose the current order book is fetched. The algorithm then iterates over every contract,
+extracts the relevant signal information (which is updated ever 5 minutes) from it and places new orders
+accordingly.
 ***
 ### Advanced Example of an Algorithm
 This example algorithm will try to close the open position for the quarter hour contracts of the next
