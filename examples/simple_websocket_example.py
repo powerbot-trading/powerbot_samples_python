@@ -12,18 +12,18 @@ This example does the following by using webservice-events provided by PowerBot:
 2) Initialize a queue and start listening for events
 3) React to events
 """
-# todo add swagger_client, install required packages and configure the file config.json with your api-key and portfolio
+# todo add swagger_client, install required packages and configure the file config.yaml with your api-key and portfolio
 
 # relative path to the config file; this file should contain all parameters
 curr_path = str(Path.cwd()).split("\\")
-config_path = ("\\").join(curr_path[:curr_path.index('powerbot-samples') + 1]) + "/configuration/config.json"
+config_path = ("\\").join(curr_path[:curr_path.index('powerbot-samples') + 1]) + "/configuration/config.yaml"
 
 # the folder "swagger_client", which contains all the functionality for interacting with PowerBot via rest, can be
 # created from the swagger-editor, selecting "Generate Client"->"python"
 # the created zip-file contains the folder "swagger_client"
 
 # to run this example, please specify your exchange-url/api-key and
-# a corresponding portfolio-id/delivery-area for this api-key in the "config.json"-file
+# a corresponding portfolio-id/delivery-area for this api-key in the "config.yaml"-file
 # for this api-key, the values "can_read" and "can_trade" must be "true",
 # as this example will read the current contracts and post a new order
 if __name__ == '__main__':

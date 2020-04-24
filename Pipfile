@@ -13,6 +13,7 @@ pytz = "*"
 schedule = "*"
 six = "*"
 stomper = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.7"

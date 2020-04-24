@@ -143,17 +143,16 @@ def algorithm():
                         # The exchange does not disclose this field to any other market participant. Only we can see it.
                         new_order.txt = json.dumps({"type": "demo", "hour_counter": hour_counter, "marginal_price": marginal_price})
                         orders_api.add_orders([new_order])
-                        LOGGER.info("Created {} order for {} for {} MW and price {}".format(new_order.side, contract.name, new_order.quantity,
-                                                                                            new_order.price))
+                        LOGGER.info(f"Created {new_order.side} order for {contract.name} for {new_order.quantity} MW and price { new_order.price}")
                 else:
-                    LOGGER.info("Orders are already placed for contract {}. No changes since last iteration.".format(contract.name))
+                    LOGGER.info(f"Orders are already placed for contract {contract.name}. No changes since last iteration.")
             else:
-                LOGGER.info("No signals for contract {}".format(contract.name))
+                LOGGER.info(f"No signals for contract {contract.name}")
 
         LOGGER.info("Algo finished.")
 
     else:
-        LOGGER.error("Market not ready. {}".format(market_status))
+        LOGGER.error(f"Market not ready. {market_status}")
 
 
 def signals():

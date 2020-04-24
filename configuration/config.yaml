@@ -1,0 +1,7 @@
+"CLIENT_DATA":
+    "HOST": host_url # e.g. https://staging.powerbot-trading.com/company_name/exchange/v2/api
+    "API_KEY": api_key # Valid API key (STANDARD is sufficient)
+
+"CONTRACT_DATA":
+    "DELIVERY_AREA": del_area # EIC - Number
+    "PORTFOLIO": porfolio_id # portfolio ID

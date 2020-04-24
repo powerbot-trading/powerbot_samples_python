@@ -1,13 +1,15 @@
  ![PowerBot Logo](https://www.powerbot-trading.com/wp-content/uploads/2018/03/PowerBot_Weblogo.png "PowerBot")
 # **PowerBot Samples**
- *Sample scripts and documentation for PowerBot*
+ ***A collection of example scripts for PowerBot***
+ 
+***A more detailed description can be found [here](https://github.com/powerbot-trading/powerbot_samples_python/wiki)***
 
-***Hint:*** *set your configuration in the config.json!*
+***Hint:*** *set your general configuration in config\config.yaml!*
 ***
 ### Content:
 1. [Introduction & Setup](#introduction--setup)
 2. [Simple Example of a REST call](#simple-example-of-a-rest-call)
-3. [Simple Example of a websocket](#simple-example-of-a-websocket)
+3. [Simple Example of a Websocket](#simple-example-of-a-websocket)
 4. [Simple Example of an Algorithm](#simple-example-of-an-algorithm)
 5. [Advanced Example of an Algorithm](#advanced-example-of-an-algorithm)
 ***
@@ -18,6 +20,10 @@ To install the requirements in a virtual environment, simply use the provided pi
 To install them system-wide, open a shell with admin privileges in this folder and run:
 
 	pip install -r requirements.txt
+
+In case you do not have admin privileges simply run:
+
+	pip install -r requirements.txt --user
 
 Additionally, the swagger_client library is required to be in the directory. 
 
@@ -40,8 +46,6 @@ Required data:
 This sample does the following:
 First it reads the necessary information from the config-file. These config-file needs to contain the powerbot-url, a 
 valid api-key and a corresponding portfolio-id/delivery-area.
-
-For being able to communicate with PowerBot, the swagger_client needs to be configured.
 
 The first interaction with PowerBot is checking the market status. Only if the market status is ok, the execution should
 proceed. Otherwise the script will stop. 
