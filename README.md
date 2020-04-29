@@ -4,7 +4,7 @@
  
 ***A more detailed description can be found [here](https://github.com/powerbot-trading/powerbot_samples_python/wiki)***
 
-***Hint:*** *set your general configuration in config\config.yaml!*
+***Hint:*** *set your general configuration in configuration\config.yaml!*
 ***
 ### Content:
 1. [Introduction & Setup](#introduction--setup)
@@ -33,7 +33,7 @@ by clicking on "Generate Client" and picking Python. The required folder is call
 If the client becomes defunct due to API changes, regenerate it in the swagger editor
 and replace "swagger_client" folder from the downloaded archive.
 
-To run the run algorithm, the API specifications you should have received have to be provided in the config.json in the configuration directory.
+To run the run algorithm, the API specifications you should have received have to be provided in the config.yaml in the configuration directory.
 
 Required data:
 
