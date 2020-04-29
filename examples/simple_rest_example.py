@@ -19,10 +19,6 @@ This example does the following by using REST-Methods provided by PowerBot:
 
 # todo add swagger_client, install required packages and configure the file config.yaml with your api-key and portfolio
 
-# relative path to the config file; this file should contain all
-curr_path = str(Path.cwd()).split("\\")
-config_path = ("\\").join(curr_path[:curr_path.index('powerbot-samples') + 1]) + "/configuration/config.yaml"
-
 # the folder "swagger_client", which contains all the functionality for interacting with PowerBot via rest, can be
 # created from the swagger-editor, selecting "Generate Client"->"python"
 # the created zip-file contains the folder "swagger_client"
@@ -31,11 +27,6 @@ config_path = ("\\").join(curr_path[:curr_path.index('powerbot-samples') + 1]) +
 # a corresponding portfolio-id/delivery-area for this api-key at the "config.yaml"-file
 # for this api-key, the values "can_read" and "can_trade" must be "true"
 if __name__ == '__main__':
-
-    # set up the configparser to read from the specified configuration file
-    # this configuration file contains all necessary information for interacting with PowerBot
-    with open(config_path, "r") as configfile:
-        config = json.load(configfile)
 
     # the configuration is read from the configuration file and the values are stored in local variables
     # the exchange_url and the api_key are needed for configuring the APIs
