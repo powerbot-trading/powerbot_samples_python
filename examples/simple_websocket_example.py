@@ -14,10 +14,6 @@ This example does the following by using webservice-events provided by PowerBot:
 """
 # todo add swagger_client, install required packages and configure the file config.yaml with your api-key and portfolio
 
-# relative path to the config file; this file should contain all parameters
-curr_path = str(Path.cwd()).split("\\")
-config_path = ("\\").join(curr_path[:curr_path.index('powerbot-samples') + 1]) + "/configuration/config.yaml"
-
 # the folder "swagger_client", which contains all the functionality for interacting with PowerBot via rest, can be
 # created from the swagger-editor, selecting "Generate Client"->"python"
 # the created zip-file contains the folder "swagger_client"
