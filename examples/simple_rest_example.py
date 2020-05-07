@@ -81,11 +81,7 @@ if __name__ == '__main__':
             delivery_start=selected_contract.delivery_start,
             delivery_end=selected_contract.delivery_end,
             position_long=10,
-            position_short=10,
-            value={
-                "value1": 5,
-                "value2": 1
-            }
+            position_short=10
         )
 
         # we post the created signal to the contract and retrieve the response
