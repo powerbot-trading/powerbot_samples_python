@@ -173,7 +173,7 @@ if __name__ == '__main__':
     API_KEY = config['CLIENT_DATA']['API_KEY']
     URL = config['CLIENT_DATA']['HOST']
     DELIVERY_AREA = config['CONTRACT_DATA']['DELIVERY_AREA']
-    PORTFOLIO_ID = config['CONTRACT_DATA']['PORTFOLIO']
+    PORTFOLIO_ID = config['CONTRACT_DATA']['PORTFOLIO_ID']
 
     # Define a list of products, which should be included in the order book request.
     # Possible values for EPEX: Intraday_Hour_Power, XBID_Hour_Power, Intraday_Quarter_Hour_Power, XBID_Quarter_Hour_Power

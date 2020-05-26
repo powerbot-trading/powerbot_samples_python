@@ -17,14 +17,14 @@ This example does the following by using REST-Methods provided by PowerBot:
 5) Post an order for the selected contract
 """
 
-# todo add swagger_client, install required packages and configure the file config.yaml with your api-key and portfolio
+# todo add swagger_client, install required packages and configure the file config.yml with your api-key and portfolio
 
 # the folder "swagger_client", which contains all the functionality for interacting with PowerBot via rest, can be
 # created from the swagger-editor, selecting "Generate Client"->"python"
 # the created zip-file contains the folder "swagger_client"
 
 # to run this example, please specify your exchange-url/api-key and
-# a corresponding portfolio-id/delivery-area for this api-key at the "config.yaml"-file
+# a corresponding portfolio-id/delivery-area for this api-key at the "config.yml"-file
 # for this api-key, the values "can_read" and "can_trade" must be "true"
 if __name__ == '__main__':
 
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     # for placing an order
     host_url = config["CLIENT_DATA"]["HOST"]
     api_key = config["CLIENT_DATA"]["API_KEY"]
-    portfolio_id = config["CONTRACT_DATA"]["PORTFOLIO"]
+    portfolio_id = config["CONTRACT_DATA"]["PORTFOLIO_ID"]
     delivery_area = config["CONTRACT_DATA"]["DELIVERY_AREA"]
 
     # we surround all the code which interacts

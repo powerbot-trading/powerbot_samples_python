@@ -4,4 +4,4 @@
 
 "CONTRACT_DATA":
     "DELIVERY_AREA": del_area # EIC - Number
-    "PORTFOLIO": porfolio_id # portfolio ID
+    "PORTFOLIO_ID": porfolio_id # portfolio ID

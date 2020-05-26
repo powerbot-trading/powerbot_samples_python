@@ -44,10 +44,10 @@ Required data:
 ***
 ### Simple Example of a REST call
 This sample does the following:
-First it reads the necessary information from the config-file. These config-file needs to contain the powerbot-url, a 
+First it reads the necessary information from the config-file. This config-file needs to contain the powerbot-url, a 
 valid api-key and a corresponding portfolio-id/delivery-area.
 
-The first interaction with PowerBot is checking the market status. Only if the market status is ok, the execution should
+The first interaction with PowerBot is checking the market status. Only if the market status is "OK", the execution should
 proceed. Otherwise the script will stop. 
 
 If the market status is "OK", the script reads the order-book, which contains all active contracts. A random contract is
@@ -55,8 +55,7 @@ selected, a signal is posted and and order is placed.
 ***
 ### Simple Example of a Websocket
 This example focuses on establishing a websocket-connection and continuously waits for new events. 
-First it reads the necessary information from the config-file. The config-file needs to contain the 
-powerbot-websocket-url, a valid api-key and a corresponding portfolio-id.
+First it reads the necessary information from the config-file.
 
 The example subscribes to the "orderbookchangedevent", so every time something is changing in the order book, the 
 change gets added to a queue and the script can react to this change.
