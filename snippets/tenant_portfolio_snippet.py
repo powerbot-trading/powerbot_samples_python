@@ -46,7 +46,7 @@ PortfoliosApi(client).get_portfolio_risk_management_settings()
 
 
 """
-Change Risk Management Settings
+Change Risk Management Settings (see risk_management_snippet for Risk Limit Object)
 """
 # Tenants
 TenantsApi(client).update_tenant_risk_management_settings(id="TENANT_ID", value="NEW_RISK_LIMIT_OBJECT")

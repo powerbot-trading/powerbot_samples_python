@@ -23,7 +23,7 @@ trd_areas = [TradingArea(exchange="EXCHANGE", delivery_area="DELIVERY_AREA")]
 
 # Set Position Limit
 pos_lims = [PositionLimit(exchange="EXCHANGE", delivery_area="DELIVERY_AREA", min_netpos_limit=-10, max_netpos_limit=10,
-                          abspos_limit=5)]
+                          abspos_limit=20)]
 
 # Set Cash Limits
 cash_lims = []
@@ -57,7 +57,7 @@ trd_areas = [TradingArea(exchange="EXCHANGE", delivery_area="DELIVERY_AREA")]
 
 # Set Position Limit
 pos_lims = [PositionLimit(exchange="EXCHANGE", delivery_area="DELIVERY_AREA", min_netpos_limit=-10, max_netpos_limit=10,
-                          abspos_limit=5)]
+                          abspos_limit=20)]
 
 # Set Cash Limits
 cash_lims = []
