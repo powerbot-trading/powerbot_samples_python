@@ -24,4 +24,5 @@ def init_client(api_key: str, host: str) -> ApiClient:
     config.host = host
     return ApiClient(config)
 
-client = init_client(config["API_KEY"], config["HOST"])
+
+client = init_client(config['CLIENT_DATA']['API_KEY'], config['CLIENT_DATA']['HOST'])
