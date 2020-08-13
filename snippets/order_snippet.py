@@ -2,7 +2,7 @@
 This snippet is a collection of commands used to work with orders in PowerBot
 """
 
-from swagger_client import OrderModify, OrderEntry, OrdersApi, ContractApi, TenantsApi, PortfoliosApi
+from swagger_client import OrderModify, OrderEntry, OrdersApi, ContractApi
 # Importing generated client from configuration
 from configuration import client
 

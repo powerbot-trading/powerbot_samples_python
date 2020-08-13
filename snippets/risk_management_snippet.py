@@ -14,10 +14,8 @@ TenantsApi(client).get_tenant_risk_management(id="TENANT_ID")
 
 
 """
-Update Tenant’s Risk Settings
+Update Tenant’s Risk Settings (Requires Master API Key)
 """
-## Requires Master API Key
-
 # Set Trading Area
 trd_areas = [TradingArea(exchange="EXCHANGE", delivery_area="DELIVERY_AREA")]
 
