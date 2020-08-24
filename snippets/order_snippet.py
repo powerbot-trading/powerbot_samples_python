@@ -15,8 +15,20 @@ order_book = ContractApi(client).get_order_books(delivery_area="DELIVERY_AREA", 
 """
 Placing an Order
 """
-# Creating the order object
+# Creating the order object with a specific Contract ID
 order = OrderEntry(contract_id="CONTRACT_ID",
+                   portfolio_id="PORTFOLIO",
+                   delivery_area="DELIVERY_AREA",
+                   side='BUY',
+                   type= "O",
+                   quantity=5,
+                   price=35,
+                   txt='order_example',
+                   clearing_acct_type="P")
+
+# Alternative: use delivery start & end to specify contract
+order = OrderEntry(dlvry_start="2020-06-18T17:00:00Z",
+                   dlvry_end="2020-06-18T18:00:00Z",
                    portfolio_id="PORTFOLIO",
                    delivery_area="DELIVERY_AREA",
                    side='BUY',
