@@ -1,6 +1,6 @@
 """
 PowerBot simple demo algo script.
-(c) 2019 Inercomp GmbH
+(c) 2020 PowerBot GmbH
 
 This example algorithm will try close the open position for the next 6 upcoming hourly contracts.
 For this purpose the current order book is fetched. The algorithm then iterates over every contract,

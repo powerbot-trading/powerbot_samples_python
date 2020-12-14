@@ -1,6 +1,6 @@
 """
 Powerbot helper functions
-(c) 2019 Inercomp GmbH
+(c) 2020 PowerBot GmbH
 """
 
 import json

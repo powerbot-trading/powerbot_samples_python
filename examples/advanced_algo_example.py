@@ -1,6 +1,6 @@
 """
 PowerBot demo algo script.
-(c) 2019 Inercomp GmbH
+(c) 2020 PowerBot GmbH
 
 This example algorithm will try to close the open position for the quarter hour contracts of the next
 three upcoming hours. The algorithm won't place orders for the entire imbalance immediately, but rather
