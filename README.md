@@ -25,10 +25,10 @@ In case you do not have admin privileges simply run:
 
 	pip install -r requirements.txt --user
 
-Additionally, the swagger_client library is required to be in the directory. 
+Additionally, the swagger_client library is required to be in the main directory of the project. 
 
 The client can be generated from https://staging.powerbot-trading.com/playground/epex/v2/admin/editor?url=../swagger-spec
-by clicking on "Generate Client" and picking Python. The required folder is called "swagger_client".
+by clicking on "Generate Client" and picking Python. The required folder from the downloaded file is called "swagger_client" and shall be placed in the top directory of the project.
 
 If the client becomes defunct due to API changes, regenerate it in the swagger editor
 and replace "swagger_client" folder from the downloaded archive.
