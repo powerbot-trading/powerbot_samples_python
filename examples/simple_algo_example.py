@@ -101,49 +101,55 @@ def algorithm():
 
                 # If the quantity, that needs to be traded, has changed or the marginal price is not the same anymore, then we want to place new orders.
                 if (current_quantity + net_position != imbalance) or marginal_price_changed:
-                    # Delete previously placed orders with our self defined "delete_orders()" method, since we will replace them with new ones.
-                    # If desired, orders can also just be modified instead.
-                    delete_orders(orders_api, to_be_deleted, contract.contract_id, PORTFOLIO_ID, DELIVERY_AREA)
 
-                    # Prepare a new order.
-                    # Every order needs to be associated with exactly one portfolio.
-                    # The fields that need to be set might change depending on the exchange the algorithm is trading at.
-                    new_order = OrderEntry(prod=contract.product,
-                                           contract_id=contract.contract_id,
-                                           portfolio_id=PORTFOLIO_ID,
-                                           delivery_area=DELIVERY_AREA,
-                                           clearing_acct_type="P",
-                                           ordr_exe_restriction="NON",
-                                           type="O",
-                                           validity_res="GFS",
-                                           state="ACTI",
-                                           quantity=0,
-                                           price=0)
+                    # Only do modifications if the OTR is not above 60
+                    if (contract.exchange_otr <= 60):
 
-                    # Calculate quantity and price
-                    delta_q = imbalance + net_position
-                    quantity = 0
-                    price_premium = 0
-                    if delta_q < 0:
-                        new_order.side = "BUY"
-                        quantity = abs(delta_q)
-                        price_premium = - (hour_counter * 2 - 2)
-                    elif delta_q > 0:
-                        new_order.side = "SELL"
-                        quantity = delta_q
-                        price_premium = hour_counter * 2 - 2
+                        # Delete previously placed orders with our self defined "delete_orders()" method, since we will replace them with new ones.
+                        # If desired, orders can also just be modified instead.
+                        delete_orders(orders_api, to_be_deleted, contract.contract_id, PORTFOLIO_ID, DELIVERY_AREA)
 
-                    # Place new order
-                    if round(quantity, 1) > 0:
-                        # EPEX requires rounding to to 0.1 MW
-                        new_order.quantity = round(quantity, 1)
-                        # EPEX requires rounding to 0.01 EUR
-                        new_order.price = round(marginal_price + price_premium, 2)
-                        # Remember current values (for eventual next iteration) and save them in the text field of the order.
-                        # The exchange does not disclose this field to any other market participant. Only we can see it.
-                        new_order.txt = json.dumps({"type": "demo", "hour_counter": hour_counter, "marginal_price": marginal_price})
-                        orders_api.add_orders([new_order])
-                        LOGGER.info(f"Created {new_order.side} order for {contract.name} for {new_order.quantity} MW and price { new_order.price}")
+                        # Prepare a new order.
+                        # Every order needs to be associated with exactly one portfolio.
+                        # The fields that need to be set might change depending on the exchange the algorithm is trading at.
+                        new_order = OrderEntry(prod=contract.product,
+                                               contract_id=contract.contract_id,
+                                               portfolio_id=PORTFOLIO_ID,
+                                               delivery_area=DELIVERY_AREA,
+                                               clearing_acct_type="P",
+                                               ordr_exe_restriction="NON",
+                                               type="O",
+                                               validity_res="GFS",
+                                               state="ACTI",
+                                               quantity=0,
+                                               price=0)
+
+                        # Calculate quantity and price
+                        delta_q = imbalance + net_position
+                        quantity = 0
+                        price_premium = 0
+                        if delta_q < 0:
+                            new_order.side = "BUY"
+                            quantity = abs(delta_q)
+                            price_premium = - (hour_counter * 2 - 2)
+                        elif delta_q > 0:
+                            new_order.side = "SELL"
+                            quantity = delta_q
+                            price_premium = hour_counter * 2 - 2
+
+                        # Place new order
+                        if round(quantity, 1) > 0:
+                            # EPEX requires rounding to to 0.1 MW
+                            new_order.quantity = round(quantity, 1)
+                            # EPEX requires rounding to 0.01 EUR
+                            new_order.price = round(marginal_price + price_premium, 2)
+                            # Remember current values (for eventual next iteration) and save them in the text field of the order.
+                            # The exchange does not disclose this field to any other market participant. Only we can see it.
+                            new_order.txt = json.dumps({"type": "demo", "hour_counter": hour_counter, "marginal_price": marginal_price})
+                            orders_api.add_orders([new_order])
+                            LOGGER.info(f"Created {new_order.side} order for {contract.name} for {new_order.quantity} MW and price { new_order.price}")
+                    else:
+                        LOGGER.info(f"OTR already >60 for {contract.name}. Will not take action.")
                 else:
                     LOGGER.info(f"Orders are already placed for contract {contract.name}. No changes since last iteration.")
             else:
