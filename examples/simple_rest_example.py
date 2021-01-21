@@ -25,7 +25,6 @@ This example does the following by using REST-Methods provided by PowerBot:
 
 # to run this example, please specify your exchange-url/api-key and
 # a corresponding portfolio-id/delivery-area for this api-key at the "config.yml"-file
-# for this api-key, the values "can_read" and "can_trade" must be "true"
 if __name__ == '__main__':
 
     # the configuration is read from the configuration file and the values are stored in local variables

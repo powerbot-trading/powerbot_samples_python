@@ -7,3 +7,4 @@ schedule>=0.6.0
 six>=1.14.0
 stomper>=0.4.3
 urllib3>=1.25.9
+websocket-client>=0.57.0
